@@ -4,6 +4,7 @@
 #include "projectile.h"
 
 Spaceship::Spaceship(const QPixmap &_pixmap)
+    : m_shoutCounter(0)
 {
     setPixmap(_pixmap);
 }
@@ -23,11 +24,25 @@ void Spaceship::moveRight()
 
 void Spaceship::shootUp()
 {
-    if(scene())
+    if(m_shoutCounter == 0)
     {
-        Projectile* p = new Projectile(QPixmap(Game::PATH_TO_PROJECTILE_PIXMAP));
-        p->setPos(x()+30, y());
-        scene()->addItem(p);
+        m_shoutCounter = Game::SPACESHIP_SHOOT_COUNTER;
+        if(scene())
+        {
+            Projectile* p = new Projectile(QPixmap(Game::PATH_TO_PROJECTILE_PIXMAP));
+            p->setPos(x()+30, y());
+            scene()->addItem(p);
+        }
+    }
+
+}
+
+void Spaceship::decrementShoutCounter()
+{
+    m_shoutCounter--;
+    if(m_shoutCounter < 0)
+    {
+        m_shoutCounter = 0;
     }
 }
 

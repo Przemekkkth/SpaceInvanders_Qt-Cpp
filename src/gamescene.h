@@ -28,7 +28,6 @@ private:
     const float m_loopSpeed;
     QTimer m_timer;
     QElapsedTimer m_elapsedTimer;
-
     QGraphicsPixmapItem *m_bgItem;
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;

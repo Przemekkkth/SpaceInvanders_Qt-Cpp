@@ -14,6 +14,7 @@ public:
     constexpr static const int FPS = 60;
     constexpr static const float SPACESHIP_SPEED = 4.f;
     constexpr static const float SPACESHIP_PROJECTILE_SPEED = 4.f;
+    constexpr static const int   SPACESHIP_SHOOT_COUNTER = 2 * (1000.0f/FPS);
 };
 
 #endif // GAME_H

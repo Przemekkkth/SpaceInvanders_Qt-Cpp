@@ -12,10 +12,12 @@ public:
     void moveLeft();
     void moveRight();
     void shootUp();
+    void decrementShoutCounter();
 signals:
 
 private:
     void clampX();
+    int m_shoutCounter;
 };
 
 #endif // SPACESHIP_H

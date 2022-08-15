@@ -33,7 +33,6 @@ void GameScene::loop()
         if(m_leftArrowPressed)
         {
             m_spaceship.moveLeft();
-            qDebug() << m_spaceship.x();
         }
         else if(m_rightArrowPressed)
         {
@@ -43,6 +42,7 @@ void GameScene::loop()
         {
             m_spaceship.shootUp();
         }
+        m_spaceship.decrementShoutCounter();
     }
 }
 
