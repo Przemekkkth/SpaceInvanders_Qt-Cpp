@@ -6,16 +6,20 @@
 #include <QPointF>
 #include <QTimer>
 #include "game.h"
+#include <QList>
 
 class Enemy : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
     explicit Enemy(int type = 0, Game::Direction direction = Game::Direction::RIGHT);
+    ~Enemy();
 
     void move();
     void setPosition(int grid_x, int grid_y);
     void setPosition(QPoint grid_point);
+    static QList<Enemy*> s_enemyManager;
+
 signals:
 
 private slots:

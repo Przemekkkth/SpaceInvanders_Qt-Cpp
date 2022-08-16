@@ -28,7 +28,7 @@ void Spaceship::shootUp()
         m_shoutCounter = Game::SPACESHIP_SHOOT_COUNTER;
         if(scene())
         {
-            Projectile* p = new Projectile(QPixmap(Game::PATH_TO_PROJECTILE_PIXMAP));
+            Projectile* p = new Projectile(Game::Projectile::SPACESHIP);
             p->setPos(x()+30, y());
             scene()->addItem(p);
         }

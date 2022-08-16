@@ -4,19 +4,21 @@
 #include <QObject>
 #include <QTimer>
 #include <QGraphicsPixmapItem>
+#include "game.h"
 
 class Projectile : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Projectile(const QPixmap& _pixmap);
+    explicit Projectile(Game::Projectile type);
     ~Projectile();
 private slots:
     void updatePos();
 
 signals:
 private:
-QTimer m_timer;
+    QTimer m_timer;
+    Game::Projectile m_type;
 };
 
 #endif // PROJECTILE_H

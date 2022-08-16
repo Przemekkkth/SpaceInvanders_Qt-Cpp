@@ -1,11 +1,20 @@
 #include "projectile.h"
-#include "game.h"
+
 #include <QGraphicsScene>
 
 
-Projectile::Projectile(const QPixmap& _pixmap)
+Projectile::Projectile(Game::Projectile type)
 {
-    setPixmap(_pixmap);
+    m_type = type;
+    if(m_type == Game::Projectile::SPACESHIP)
+    {
+        setPixmap(QPixmap(Game::PATH_TO_PROJECTILE_PIXMAP));
+    }
+    else
+    {
+        setPixmap(QPixmap(Game::PATH_TO_ENEMY_PROJECTILE_PIXMAP));
+    }
+
     connect(&m_timer, &QTimer::timeout, this, &Projectile::updatePos);
     m_timer.start(int(1000.0f/Game::FPS));
 }
@@ -17,13 +26,29 @@ Projectile::~Projectile()
 
 void Projectile::updatePos()
 {
-    moveBy(0, -Game::SPACESHIP_PROJECTILE_SPEED);
-    if(y() + pixmap().height() < 0)
+    if(m_type == Game::Projectile::SPACESHIP)
     {
-        if(scene())
+        moveBy(0, -Game::SPACESHIP_PROJECTILE_SPEED);
+        if(y() + pixmap().height() < 0)
         {
-            scene()->removeItem(this);
-            delete this;
+            if(scene())
+            {
+                scene()->removeItem(this);
+                delete this;
+            }
         }
     }
+    else if(m_type == Game::Projectile::ENEMY)
+    {
+        moveBy(0, +Game::SPACESHIP_PROJECTILE_SPEED);
+        if(y() > Game::RESOLUTION.height())
+        {
+            if(scene())
+            {
+                scene()->removeItem(this);
+                delete this;
+            }
+        }
+    }
+
 }

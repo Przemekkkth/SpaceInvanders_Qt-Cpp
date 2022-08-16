@@ -1,5 +1,7 @@
 #include "enemy.h"
 
+QList<Enemy*> Enemy::s_enemyManager;
+
 Enemy::Enemy(int type, Game::Direction direction)
     : QGraphicsPixmapItem(QPixmap(Game::PATH_TO_ENEMIES_PIXMAP)), m_currentFrame(0)
 {
@@ -16,6 +18,13 @@ Enemy::Enemy(int type, Game::Direction direction)
     setPixmap(m_pixmap.copy(0,0, Game::ENEMY_SIZE, Game::ENEMY_SIZE));
     connect(&m_timer, &QTimer::timeout, this, &Enemy::updatePixmap);
     m_timer.start(Game::TIME_OF_ENEMY_FRAME);
+
+    s_enemyManager.push_back(this);
+}
+
+Enemy::~Enemy()
+{
+    s_enemyManager.removeOne(this);
 }
 
 void Enemy::move()

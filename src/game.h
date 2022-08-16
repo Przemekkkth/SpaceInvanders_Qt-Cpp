@@ -10,6 +10,7 @@ public:
     constexpr static const QSize RESOLUTION = QSize(640, 480);
     static const QString PATH_TO_SPACESHIP_PIXMAP;
     static const QString PATH_TO_PROJECTILE_PIXMAP;
+    static const QString PATH_TO_ENEMY_PROJECTILE_PIXMAP;
     static const QString PATH_TO_BG_PIXMAP;
     static const QString PATH_TO_ENEMY_PIXMAP;
     static const QString PATH_TO_ENEMIES_PIXMAP;

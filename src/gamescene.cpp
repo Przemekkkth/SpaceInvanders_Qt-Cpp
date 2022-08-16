@@ -61,11 +61,12 @@ void GameScene::loop()
             m_spaceship.shootUp();
         }
         m_spaceship.decrementShoutCounter();
-        m_enemy1->move();
-        m_enemy2->move();
-        m_enemy3->move();
-        m_enemy4->move();
-        m_enemy5->move();
+
+        for(int idx = Enemy::s_enemyManager.size()-1; idx >= 0; --idx)
+        {
+            Enemy::s_enemyManager.at(idx)->move();
+
+        }
     }
 }
 
