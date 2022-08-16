@@ -46,9 +46,9 @@ void Spaceship::decrementShoutCounter()
     }
 }
 
-void Spaceship::hit()
+void Spaceship::hit(int healthPoint)
 {
-    m_health--;
+    m_health -= healthPoint;
 }
 
 void Spaceship::clampX()

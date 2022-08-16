@@ -13,7 +13,7 @@ public:
     void moveRight();
     void shootUp();
     void decrementShoutCounter();
-    void hit();
+    void hit(int healthPoint = 1);
 signals:
 
 private:

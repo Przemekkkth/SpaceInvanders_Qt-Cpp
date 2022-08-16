@@ -68,6 +68,8 @@ void Enemy::move()
             }
         }
     }
+
+
 }
 
 void Enemy::setPosition(int grid_x, int grid_y)
@@ -112,9 +114,9 @@ void Enemy::makeShoot()
     }
 }
 
-void Enemy::hit()
+void Enemy::hit(int healthPoint)
 {
-    --m_health;
+    m_health -= healthPoint;
     if(m_health <= 0)
     {
         if(scene())

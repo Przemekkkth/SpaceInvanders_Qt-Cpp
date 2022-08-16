@@ -22,12 +22,13 @@ public:
     static void decrementShootCounter();
     static void tryShoot();
     void makeShoot();
-    void hit();
+    void hit(int healthPoint = 1);
 signals:
 
 private slots:
     void updatePixmap();
 private:
+
     Game::Direction m_direcion;
     QPoint m_srcPoint;
     QTimer m_timer;
