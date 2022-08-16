@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QElapsedTimer>
 #include "spaceship.h"
-
+#include "enemy.h"
 
 class QGraphicsPixmapItem;
 class GameScene : public QGraphicsScene
@@ -21,6 +21,7 @@ private slots:
 
 private:
     Spaceship m_spaceship;
+    Enemy m_enemy;
 
     bool m_leftArrowPressed, m_rightArrowPressed, m_spacebarPressed;
     // QGraphicsScene interface

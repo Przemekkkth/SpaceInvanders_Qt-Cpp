@@ -4,13 +4,16 @@
 
 GameScene::GameScene(QObject *parent)
     : QGraphicsScene{parent}, m_spaceship(QPixmap(Game::PATH_TO_SPACESHIP_PIXMAP)),
-      m_loopTime(0.0f), m_deltaTime(0.0f), m_loopSpeed(int(1000.0f/Game::FPS))
+      m_leftArrowPressed(false), m_rightArrowPressed(false), m_spacebarPressed(false), m_loopTime(0.0f),
+      m_deltaTime(0.0f), m_loopSpeed(int(1000.0f/Game::FPS))
 {
     setSceneRect(0,0, Game::RESOLUTION.width(), Game::RESOLUTION.height());
 
     m_bgItem = new QGraphicsPixmapItem(QPixmap(Game::PATH_TO_BG_PIXMAP));
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
+
+    addItem(&m_enemy);
 
     addItem(&m_spaceship);
     m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
@@ -43,6 +46,7 @@ void GameScene::loop()
             m_spaceship.shootUp();
         }
         m_spaceship.decrementShoutCounter();
+        m_enemy.move();
     }
 }
 

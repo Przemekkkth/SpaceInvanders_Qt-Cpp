@@ -1,10 +1,21 @@
 #include "game.h"
 
-const QString Game::PATH_TO_SPACESHIP_PIXMAP = ":/res/spaceship.png";
+const QString Game::PATH_TO_SPACESHIP_PIXMAP  = ":/res/spaceship.png";
 const QString Game::PATH_TO_PROJECTILE_PIXMAP = ":/res/projectile.png";
-const QString Game::PATH_TO_BG_PIXMAP = ":/res/bg.png";
-
+const QString Game::PATH_TO_BG_PIXMAP         = ":/res/bg.png";
+const QString Game::PATH_TO_ENEMY_PIXMAP      = ":/res/enemy1.png";
+const QString Game::PATH_TO_ENEMIES_PIXMAP    = ":/res/enemies.png";
 Game::Game()
 {
 
+}
+
+int Game::convertPixelToGridPoint(int pixelVal)
+{
+    return int(pixelVal/GRID_SIZE);
+}
+
+int Game::convertGridPointToPixel(int gridPointVal)
+{
+    return gridPointVal*GRID_SIZE;
 }

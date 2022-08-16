@@ -3,5 +3,7 @@
         <file>res/spaceship.png</file>
         <file>res/projectile.png</file>
         <file>res/bg.png</file>
+        <file>res/enemy1.png</file>
+        <file>res/enemies.png</file>
     </qresource>
 </RCC>

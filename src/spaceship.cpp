@@ -12,7 +12,6 @@ Spaceship::Spaceship(const QPixmap &_pixmap)
 void Spaceship::moveLeft()
 {
     moveBy(-Game::SPACESHIP_SPEED, 0);
-    //setPos(x()-Game::SPACESHIP_SPEED, y());
     clampX();
 }
 
