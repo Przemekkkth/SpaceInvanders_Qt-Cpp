@@ -18,6 +18,10 @@ public:
     constexpr static const float SPACESHIP_PROJECTILE_SPEED = 4.f;
     constexpr static const int   SPACESHIP_SHOOT_COUNTER = 2 * (1000.0f/FPS);
 
+    enum class Projectile{
+        SPACESHIP, ENEMY
+    };
+
     enum class Direction{
         NONE = 0, LEFT, RIGHT, DOWN
     };
