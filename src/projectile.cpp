@@ -1,7 +1,7 @@
 #include "projectile.h"
-
 #include <QGraphicsScene>
-
+#include "spaceship.h"
+#include "enemy.h"
 
 Projectile::Projectile(Game::Projectile type)
 {
@@ -37,6 +37,7 @@ void Projectile::updatePos()
                 delete this;
             }
         }
+        checkCollideWithEnemy();
     }
     else if(m_type == Game::Projectile::ENEMY)
     {
@@ -49,6 +50,46 @@ void Projectile::updatePos()
                 delete this;
             }
         }
+        checkCollideWithSpaceship();
     }
 
 }
+
+void Projectile::checkCollideWithSpaceship()
+{
+    QList<QGraphicsItem*> collidedList = collidingItems();
+    for(int idx = collidedList.size() - 1; idx >= 0; --idx)
+    {
+        Spaceship* spaceship = dynamic_cast<Spaceship*>(collidedList[idx]);
+        if(spaceship)
+        {
+            spaceship->hit();
+            if(scene())
+            {
+                scene()->removeItem(this);
+                delete this;
+                return;
+            }
+        }
+    }
+}
+
+void Projectile::checkCollideWithEnemy()
+{
+    QList<QGraphicsItem*> collidedList = collidingItems();
+    for(int idx = collidedList.size() - 1; idx >= 0; --idx)
+    {
+        Enemy* enemy = dynamic_cast<Enemy*>(collidedList[idx]);
+        if(enemy)
+        {
+            enemy->hit();
+            if(scene())
+            {
+                scene()->removeItem(this);
+                delete this;
+                return;
+            }
+        }
+    }
+}
+

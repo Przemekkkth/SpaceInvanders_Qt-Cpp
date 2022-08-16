@@ -7,6 +7,7 @@ Spaceship::Spaceship(const QPixmap &_pixmap)
     : m_shoutCounter(0)
 {
     setPixmap(_pixmap);
+    m_health = 999;
 }
 
 void Spaceship::moveLeft()
@@ -43,6 +44,11 @@ void Spaceship::decrementShoutCounter()
     {
         m_shoutCounter = 0;
     }
+}
+
+void Spaceship::hit()
+{
+    m_health--;
 }
 
 void Spaceship::clampX()

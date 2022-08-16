@@ -9,6 +9,7 @@ int Enemy::s_shootCounter;
 Enemy::Enemy(int type, Game::Direction direction)
     : QGraphicsPixmapItem(QPixmap(Game::PATH_TO_ENEMIES_PIXMAP)), m_currentFrame(0)
 {
+    m_health = 1;
     if(direction == Game::Direction::RIGHT)
     {
         m_direcion = Game::Direction::RIGHT;
@@ -93,7 +94,7 @@ void Enemy::decrementShootCounter()
 void Enemy::tryShoot()
 {
     decrementShootCounter();
-    if(s_shootCounter == 0)
+    if(s_shootCounter == 0 && s_enemyManager.size())
     {
         s_shootCounter = QRandomGenerator::global()->bounded(Game::MIN_ENEMY_SHOOT_COUNTER, Game::MAX_ENEMY_SHOOT_COUNTER);
         int idx = rand() % s_enemyManager.size();
@@ -108,6 +109,19 @@ void Enemy::makeShoot()
         Projectile* p = new Projectile(Game::Projectile::ENEMY);
         p->setPos(x()+Game::ENEMY_SIZE/2 - p->boundingRect().width()/2, y() + Game::ENEMY_SIZE - p->boundingRect().height()/2);
         scene()->addItem(p);
+    }
+}
+
+void Enemy::hit()
+{
+    --m_health;
+    if(m_health <= 0)
+    {
+        if(scene())
+        {
+            scene()->removeItem(this);
+            delete this;
+        }
     }
 }
 

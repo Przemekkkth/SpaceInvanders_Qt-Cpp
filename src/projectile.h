@@ -20,8 +20,8 @@ private:
     QTimer m_timer;
     Game::Projectile m_type;
 
-    bool collideWithSpaceship();
-    bool collideWithEnemy();
+    void checkCollideWithSpaceship();
+    void checkCollideWithEnemy();
 };
 
 #endif // PROJECTILE_H

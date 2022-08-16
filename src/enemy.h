@@ -22,6 +22,7 @@ public:
     static void decrementShootCounter();
     static void tryShoot();
     void makeShoot();
+    void hit();
 signals:
 
 private slots:
@@ -32,6 +33,7 @@ private:
     QTimer m_timer;
     int m_currentFrame;
     QPixmap m_pixmap;
+    int m_health;
 
     static int s_shootCounter;
 };
