@@ -1,9 +1,17 @@
 #include "enemy.h"
 
-Enemy::Enemy(int type)
+Enemy::Enemy(int type, Game::Direction direction)
     : QGraphicsPixmapItem(QPixmap(Game::PATH_TO_ENEMIES_PIXMAP)), m_currentFrame(0)
 {
-    m_direcion = Game::Direction::RIGHT;
+    if(direction == Game::Direction::RIGHT)
+    {
+        m_direcion = Game::Direction::RIGHT;
+    }
+    else
+    {
+        m_direcion = Game::Direction::LEFT;
+    }
+
     m_pixmap = pixmap().copy(type * Game::ENEMY_SIZE * Game::COUNT_OF_ENEMY_ANIM_FRAMES, 0, Game::COUNT_OF_ENEMY_ANIM_FRAMES*Game::ENEMY_SIZE, Game::ENEMY_SIZE);
     setPixmap(m_pixmap.copy(0,0, Game::ENEMY_SIZE, Game::ENEMY_SIZE));
     connect(&m_timer, &QTimer::timeout, this, &Enemy::updatePixmap);

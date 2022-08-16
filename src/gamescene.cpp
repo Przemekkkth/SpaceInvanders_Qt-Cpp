@@ -15,7 +15,7 @@ GameScene::GameScene(QObject *parent)
 
     m_enemy1 = new Enemy(0);
     addItem(m_enemy1);
-    m_enemy2 = new Enemy(1);
+    m_enemy2 = new Enemy(1, Game::Direction::LEFT);
     m_enemy2->setPosition(2,2);
     addItem(m_enemy2);
     m_enemy3 = new Enemy(2);
