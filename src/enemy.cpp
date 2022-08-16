@@ -1,4 +1,6 @@
 #include "enemy.h"
+#include <QGraphicsScene>
+#include "projectile.h"
 
 QList<Enemy*> Enemy::s_enemyManager;
 
@@ -75,6 +77,16 @@ void Enemy::setPosition(int grid_x, int grid_y)
 void Enemy::setPosition(QPoint grid_point)
 {
     setPosition(grid_point.x(), grid_point.y());
+}
+
+void Enemy::makeShoot()
+{
+    if(scene())
+    {
+        Projectile* p = new Projectile(Game::Projectile::ENEMY);
+        p->setPos(x()+Game::ENEMY_SIZE/2 - p->boundingRect().width()/2, y() + Game::ENEMY_SIZE - p->boundingRect().height()/2);
+        scene()->addItem(p);
+    }
 }
 
 void Enemy::updatePixmap()

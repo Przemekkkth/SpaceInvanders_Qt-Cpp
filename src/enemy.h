@@ -20,6 +20,7 @@ public:
     void setPosition(QPoint grid_point);
     static QList<Enemy*> s_enemyManager;
 
+    void makeShoot();
 signals:
 
 private slots:

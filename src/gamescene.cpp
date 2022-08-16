@@ -65,6 +65,7 @@ void GameScene::loop()
         for(int idx = Enemy::s_enemyManager.size()-1; idx >= 0; --idx)
         {
             Enemy::s_enemyManager.at(idx)->move();
+            Enemy::s_enemyManager.at(idx)->makeShoot();
 
         }
     }

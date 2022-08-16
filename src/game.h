@@ -38,6 +38,7 @@ public:
 
     constexpr static const int COUNT_OF_ENEMY_ANIM_FRAMES = 2;
     constexpr static const int TIME_OF_ENEMY_FRAME = 250;
+
 };
 
 #endif // GAME_H

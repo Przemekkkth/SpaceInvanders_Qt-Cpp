@@ -19,6 +19,9 @@ signals:
 private:
     QTimer m_timer;
     Game::Projectile m_type;
+
+    bool collideWithSpaceship();
+    bool collideWithEnemy();
 };
 
 #endif // PROJECTILE_H
