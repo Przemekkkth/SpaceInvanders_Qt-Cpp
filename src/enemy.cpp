@@ -48,6 +48,18 @@ void Enemy::move()
     }
 }
 
+void Enemy::setPosition(int grid_x, int grid_y)
+{
+    int x = Game::convertGridPointToPixel(grid_x);
+    int y = Game::convertGridPointToPixel(grid_y);
+    setPos(x, y);
+}
+
+void Enemy::setPosition(QPoint grid_point)
+{
+    setPosition(grid_point.x(), grid_point.y());
+}
+
 void Enemy::updatePixmap()
 {
     m_currentFrame++;

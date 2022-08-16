@@ -13,7 +13,22 @@ GameScene::GameScene(QObject *parent)
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
 
-    addItem(&m_enemy);
+    m_enemy1 = new Enemy(0);
+    addItem(m_enemy1);
+    m_enemy2 = new Enemy(1);
+    m_enemy2->setPosition(2,2);
+    addItem(m_enemy2);
+    m_enemy3 = new Enemy(2);
+    m_enemy3->setPosition(3,2);
+    addItem(m_enemy3);
+    m_enemy4 = new Enemy(3);
+    m_enemy4->setPosition(3,4);
+    addItem(m_enemy4);
+
+    m_enemy5 = new Enemy(4);
+    m_enemy5->setPosition(4,4);
+    addItem(m_enemy5);
+
 
     addItem(&m_spaceship);
     m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
@@ -46,7 +61,11 @@ void GameScene::loop()
             m_spaceship.shootUp();
         }
         m_spaceship.decrementShoutCounter();
-        m_enemy.move();
+        m_enemy1->move();
+        m_enemy2->move();
+        m_enemy3->move();
+        m_enemy4->move();
+        m_enemy5->move();
     }
 }
 

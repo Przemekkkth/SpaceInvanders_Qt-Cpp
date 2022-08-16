@@ -14,6 +14,8 @@ public:
     explicit Enemy(int type = 0);
 
     void move();
+    void setPosition(int grid_x, int grid_y);
+    void setPosition(QPoint grid_point);
 signals:
 
 private slots:

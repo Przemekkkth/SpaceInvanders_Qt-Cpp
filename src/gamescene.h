@@ -21,7 +21,7 @@ private slots:
 
 private:
     Spaceship m_spaceship;
-    Enemy m_enemy;
+    Enemy *m_enemy1, *m_enemy2, *m_enemy3, *m_enemy4, *m_enemy5;
 
     bool m_leftArrowPressed, m_rightArrowPressed, m_spacebarPressed;
     // QGraphicsScene interface
