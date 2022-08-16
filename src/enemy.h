@@ -19,7 +19,8 @@ public:
     void setPosition(int grid_x, int grid_y);
     void setPosition(QPoint grid_point);
     static QList<Enemy*> s_enemyManager;
-
+    static void decrementShootCounter();
+    static void tryShoot();
     void makeShoot();
 signals:
 
@@ -31,6 +32,8 @@ private:
     QTimer m_timer;
     int m_currentFrame;
     QPixmap m_pixmap;
+
+    static int s_shootCounter;
 };
 
 #endif // ENEMY_H

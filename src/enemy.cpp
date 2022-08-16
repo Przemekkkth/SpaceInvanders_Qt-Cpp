@@ -1,8 +1,10 @@
 #include "enemy.h"
 #include <QGraphicsScene>
+#include <QRandomGenerator>
 #include "projectile.h"
 
 QList<Enemy*> Enemy::s_enemyManager;
+int Enemy::s_shootCounter;
 
 Enemy::Enemy(int type, Game::Direction direction)
     : QGraphicsPixmapItem(QPixmap(Game::PATH_TO_ENEMIES_PIXMAP)), m_currentFrame(0)
@@ -77,6 +79,26 @@ void Enemy::setPosition(int grid_x, int grid_y)
 void Enemy::setPosition(QPoint grid_point)
 {
     setPosition(grid_point.x(), grid_point.y());
+}
+
+void Enemy::decrementShootCounter()
+{
+    s_shootCounter--;
+    if(s_shootCounter < 0)
+    {
+        s_shootCounter = 0;
+    }
+}
+
+void Enemy::tryShoot()
+{
+    decrementShootCounter();
+    if(s_shootCounter == 0)
+    {
+        s_shootCounter = QRandomGenerator::global()->bounded(Game::MIN_ENEMY_SHOOT_COUNTER, Game::MAX_ENEMY_SHOOT_COUNTER);
+        int idx = rand() % s_enemyManager.size();
+        s_enemyManager.at(idx)->makeShoot();
+    }
 }
 
 void Enemy::makeShoot()
