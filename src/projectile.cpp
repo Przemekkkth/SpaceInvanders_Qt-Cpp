@@ -2,6 +2,7 @@
 #include <QGraphicsScene>
 #include "spaceship.h"
 #include "enemy.h"
+#include "ufo.h"
 
 Projectile::Projectile(Game::Projectile type)
 {
@@ -38,6 +39,7 @@ void Projectile::updatePos()
             }
         }
         checkCollideWithEnemy();
+        checkCollideWithUfo();
     }
     else if(m_type == Game::Projectile::ENEMY)
     {
@@ -83,6 +85,25 @@ void Projectile::checkCollideWithEnemy()
         if(enemy)
         {
             enemy->hit();
+            if(scene())
+            {
+                scene()->removeItem(this);
+                delete this;
+                return;
+            }
+        }
+    }
+}
+
+void Projectile::checkCollideWithUfo()
+{
+    QList<QGraphicsItem*> collidedList = collidingItems();
+    for(int idx = collidedList.size() - 1; idx >= 0; --idx)
+    {
+        Ufo* ufo = dynamic_cast<Ufo*>(collidedList[idx]);
+        if(ufo)
+        {
+            ufo->hit();
             if(scene())
             {
                 scene()->removeItem(this);

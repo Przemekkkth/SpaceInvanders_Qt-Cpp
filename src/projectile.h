@@ -22,6 +22,7 @@ private:
 
     void checkCollideWithSpaceship();
     void checkCollideWithEnemy();
+    void checkCollideWithUfo();
 };
 
 #endif // PROJECTILE_H

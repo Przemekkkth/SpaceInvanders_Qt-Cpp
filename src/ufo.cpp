@@ -1,14 +1,24 @@
 #include "ufo.h"
+#include "animation.h"
+#include <QGraphicsScene>
 
+QList<Ufo*> Ufo::s_ufoManager;
 
 Ufo::Ufo()
-    : QGraphicsPixmapItem(Game::PATH_TO_UFO_PIXMAP), m_currentFrame(0)
+    : QGraphicsPixmapItem(Game::PATH_TO_UFO_PIXMAP), m_currentFrame(0), m_health(1)
 {
     m_direction = Game::Direction::RIGHT;
     m_pixmap = pixmap();
 
     connect(&m_timer, &QTimer::timeout, this, &Ufo::updatePixmap);
     m_timer.start(Game::TIME_OF_ENEMY_FRAME);
+
+    s_ufoManager.push_back(this);
+}
+
+Ufo::~Ufo()
+{
+    s_ufoManager.removeOne(this);
 }
 
 void Ufo::move()
@@ -84,6 +94,22 @@ void Ufo::setPosition(int grid_x, int grid_y)
 void Ufo::setPosition(QPoint grid_point)
 {
     setPosition(grid_point.x(), grid_point.y());
+}
+
+void Ufo::hit(int healthPoint)
+{
+    m_health -= healthPoint;
+    if(m_health <= 0)
+    {
+        if(scene())
+        {
+            Animation *explosionAnim = new Animation(QPixmap(Game::PATH_TO_EXPLOSION_PIXMAP), QSize(Game::ENEMY_SIZE, Game::ENEMY_SIZE), Game::COUNT_OF_EXPLOSION_ANIM_FRAMES, Game::TIME_OF_EXPLOSION_ANIM_FRAME);
+            explosionAnim->setPos(pos());
+            scene()->addItem(explosionAnim);
+            scene()->removeItem(this);
+            delete this;
+        }
+    }
 }
 
 void Ufo::updatePixmap()

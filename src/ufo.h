@@ -5,6 +5,7 @@
 #include <QTimer>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+#include <QList>
 #include "game.h"
 
 class Ufo : public QObject, public QGraphicsPixmapItem
@@ -12,9 +13,12 @@ class Ufo : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     explicit Ufo();
+    ~Ufo();
     void move();
     void setPosition(int grid_x, int grid_y);
     void setPosition(QPoint grid_point);
+    void hit(int healthPoint = 1);
+    static QList<Ufo*> s_ufoManager;
 signals:
 private slots:
     void updatePixmap();
@@ -25,6 +29,7 @@ private:
     QPixmap m_pixmap;
     QTimer m_timer;
     QPoint m_srcPoint;
+    int m_health;
 };
 
 #endif // UFO_H
