@@ -24,7 +24,6 @@ void Animation::updatePixmap()
     m_currentFrame++;
     setPixmap(m_pixmap.copy(m_currentFrame*m_tileSize.width(), 0, m_tileSize.width(), m_tileSize.height()));
 
-
     if(m_currentFrame == m_countOfFrames)
     {
         if(scene())

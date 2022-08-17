@@ -15,6 +15,7 @@ public:
     static const QString PATH_TO_ENEMY_PIXMAP;
     static const QString PATH_TO_ENEMIES_PIXMAP;
     static const QString PATH_TO_EXPLOSION_PIXMAP;
+    static const QString PATH_TO_UFO_PIXMAP;
 
     constexpr static const int FPS = 60;
     constexpr static const float SPACESHIP_SPEED = 4.f;
@@ -47,6 +48,12 @@ public:
     //ExplosionAnim
     constexpr static const int COUNT_OF_EXPLOSION_ANIM_FRAMES = 11;
     constexpr static const int TIME_OF_EXPLOSION_ANIM_FRAME = 50;
+
+    //UFO
+    constexpr static const int UFO_SIZE = GRID_SIZE;
+    constexpr static const int COUNT_OF_UFO_ANIM_FRAMES = 4;
+    constexpr static const int TIME_OF_UFO_FRAME = 250;
+    constexpr static float UFO_SPEED = 3.5f;
 };
 
 #endif // GAME_H

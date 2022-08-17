@@ -29,6 +29,9 @@ GameScene::GameScene(QObject *parent)
     m_enemy5->setPosition(4,4);
     addItem(m_enemy5);
 
+    m_ufo = new Ufo();
+    m_ufo->setPosition(-2,-2);
+    addItem(m_ufo);
 
     addItem(&m_spaceship);
     m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
@@ -67,6 +70,7 @@ void GameScene::loop()
             Enemy::s_enemyManager.at(idx)->move();
         }
         Enemy::tryShoot();
+        m_ufo->move();
     }
 }
 

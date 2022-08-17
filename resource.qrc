@@ -7,5 +7,6 @@
         <file>res/enemies.png</file>
         <file>res/enemy_projectile.png</file>
         <file>res/explosion.png</file>
+        <file>res/ufo.png</file>
     </qresource>
 </RCC>

@@ -9,6 +9,7 @@ SOURCES += \
     src/main.cpp \
     src/projectile.cpp \
     src/spaceship.cpp \
+    src/ufo.cpp \
     src/view.cpp
 
 HEADERS += \
@@ -18,6 +19,7 @@ HEADERS += \
     src/gamescene.h \
     src/projectile.h \
     src/spaceship.h \
+    src/ufo.h \
     src/view.h
 
 RESOURCES += \
