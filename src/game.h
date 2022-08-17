@@ -14,6 +14,8 @@ public:
     static const QString PATH_TO_BG_PIXMAP;
     static const QString PATH_TO_ENEMY_PIXMAP;
     static const QString PATH_TO_ENEMIES_PIXMAP;
+    static const QString PATH_TO_EXPLOSION_PIXMAP;
+
     constexpr static const int FPS = 60;
     constexpr static const float SPACESHIP_SPEED = 4.f;
     constexpr static const float SPACESHIP_PROJECTILE_SPEED = 4.f;
@@ -41,6 +43,10 @@ public:
 
     constexpr static const int   MIN_ENEMY_SHOOT_COUNTER = 0.75 * (1000.0f/FPS);
     constexpr static const int   MAX_ENEMY_SHOOT_COUNTER = 1.75 * (1000.0f/FPS);
+
+    //ExplosionAnim
+    constexpr static const int COUNT_OF_EXPLOSION_ANIM_FRAMES = 11;
+    constexpr static const int TIME_OF_EXPLOSION_ANIM_FRAME = 50;
 };
 
 #endif // GAME_H

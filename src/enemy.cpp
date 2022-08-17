@@ -1,6 +1,7 @@
 #include "enemy.h"
 #include <QGraphicsScene>
 #include <QRandomGenerator>
+#include "animation.h"
 #include "projectile.h"
 
 QList<Enemy*> Enemy::s_enemyManager;
@@ -121,6 +122,9 @@ void Enemy::hit(int healthPoint)
     {
         if(scene())
         {
+            Animation *explosionAnim = new Animation(QPixmap(Game::PATH_TO_EXPLOSION_PIXMAP), QSize(Game::ENEMY_SIZE, Game::ENEMY_SIZE), Game::COUNT_OF_EXPLOSION_ANIM_FRAMES, Game::TIME_OF_EXPLOSION_ANIM_FRAME);
+            explosionAnim->setPos(pos());
+            scene()->addItem(explosionAnim);
             scene()->removeItem(this);
             delete this;
         }

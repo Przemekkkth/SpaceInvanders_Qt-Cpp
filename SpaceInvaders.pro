@@ -2,6 +2,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 
 SOURCES += \
+    src/animation.cpp \
     src/enemy.cpp \
     src/game.cpp \
     src/gamescene.cpp \
@@ -11,6 +12,7 @@ SOURCES += \
     src/view.cpp
 
 HEADERS += \
+    src/animation.h \
     src/enemy.h \
     src/game.h \
     src/gamescene.h \

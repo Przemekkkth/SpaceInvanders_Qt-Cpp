@@ -21,7 +21,7 @@ Projectile::Projectile(Game::Projectile type)
 
 Projectile::~Projectile()
 {
-    qDebug() << "Projectile Object is Deleted";
+    //qDebug() << "Projectile Object is Deleted";
 }
 
 void Projectile::updatePos()
