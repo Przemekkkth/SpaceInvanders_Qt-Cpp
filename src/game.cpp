@@ -8,6 +8,7 @@ const QString Game::PATH_TO_ENEMY_PIXMAP      = ":/res/enemy1.png";
 const QString Game::PATH_TO_ENEMIES_PIXMAP    = ":/res/enemies.png";
 const QString Game::PATH_TO_EXPLOSION_PIXMAP  = ":/res/explosion.png";
 const QString Game::PATH_TO_UFO_PIXMAP        = ":/res/ufo.png";
+const QString Game::PATH_TO_POWERUP_PIXMAP    = ":/res/power_ups.png";
 
 Game::Game()
 {

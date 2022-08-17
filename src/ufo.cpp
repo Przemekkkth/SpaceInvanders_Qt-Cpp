@@ -1,5 +1,6 @@
 #include "ufo.h"
 #include "animation.h"
+#include "powerup.h"
 #include <QGraphicsScene>
 
 QList<Ufo*> Ufo::s_ufoManager;
@@ -106,6 +107,11 @@ void Ufo::hit(int healthPoint)
             Animation *explosionAnim = new Animation(QPixmap(Game::PATH_TO_EXPLOSION_PIXMAP), QSize(Game::ENEMY_SIZE, Game::ENEMY_SIZE), Game::COUNT_OF_EXPLOSION_ANIM_FRAMES, Game::TIME_OF_EXPLOSION_ANIM_FRAME);
             explosionAnim->setPos(pos());
             scene()->addItem(explosionAnim);
+
+            PowerUp *powerUp = new PowerUp();
+            powerUp->setPos(x() + powerUp->boundingRect().width()/2, y() - powerUp->boundingRect().height()/2);
+            scene()->addItem(powerUp);
+
             scene()->removeItem(this);
             delete this;
         }

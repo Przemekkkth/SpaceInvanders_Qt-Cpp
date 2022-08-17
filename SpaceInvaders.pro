@@ -7,6 +7,7 @@ SOURCES += \
     src/game.cpp \
     src/gamescene.cpp \
     src/main.cpp \
+    src/powerup.cpp \
     src/projectile.cpp \
     src/spaceship.cpp \
     src/ufo.cpp \
@@ -17,6 +18,7 @@ HEADERS += \
     src/enemy.h \
     src/game.h \
     src/gamescene.h \
+    src/powerup.h \
     src/projectile.h \
     src/spaceship.h \
     src/ufo.h \
