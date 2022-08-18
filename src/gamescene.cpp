@@ -3,7 +3,7 @@
 #include <QKeyEvent>
 
 GameScene::GameScene(QObject *parent)
-    : QGraphicsScene{parent}, m_spaceship(QPixmap(Game::PATH_TO_SPACESHIP_PIXMAP)),
+    : QGraphicsScene{parent}, m_spaceship(),
       m_leftArrowPressed(false), m_rightArrowPressed(false), m_spacebarPressed(false), m_loopTime(0.0f),
       m_deltaTime(0.0f), m_loopSpeed(int(1000.0f/Game::FPS))
 {

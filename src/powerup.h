@@ -19,6 +19,7 @@ private slots:
 signals:
 
 private:
+    void checkCollideWithSpaceship();
     Game::PowerUpType m_type;
     QTimer m_timer;
 };

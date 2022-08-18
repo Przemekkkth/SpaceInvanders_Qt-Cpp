@@ -3,11 +3,16 @@
 #include <QGraphicsScene>
 #include "projectile.h"
 
-Spaceship::Spaceship(const QPixmap &_pixmap)
-    : m_shoutCounter(0)
+Spaceship::Spaceship()
+    : QGraphicsPixmapItem(QPixmap(Game::PATH_TO_SPACESHIP_SPRITE_PIXMAP)), m_shoutCounter(0)
 {
-    setPixmap(_pixmap);
+    m_pixmap = pixmap();
+    setPixmap(m_pixmap.copy(Game::SPACESHIP_NORMAL.x(), Game::SPACESHIP_NORMAL.y(), Game::SPACESHIP_SIZE, Game::SPACESHIP_SIZE));
     m_health = 999;
+
+    m_status = Game::SpaceshipStatus::NORMAL;
+    connect(&m_timer, &QTimer::timeout, this, &Spaceship::updatePixmap);
+    m_timer.start(1000);
 }
 
 void Spaceship::moveLeft()
@@ -49,6 +54,41 @@ void Spaceship::decrementShoutCounter()
 void Spaceship::hit(int healthPoint)
 {
     m_health -= healthPoint;
+}
+
+void Spaceship::addShield()
+{
+    m_status = Game::SpaceshipStatus::SHIELD;
+}
+
+void Spaceship::addTripleShoot()
+{
+    m_status = Game::SpaceshipStatus::TRIPLE_SHOOT;
+}
+
+void Spaceship::addSuperShoot()
+{
+    m_status = Game::SpaceshipStatus::SUPER_SHOOT;
+}
+
+void Spaceship::updatePixmap()
+{
+    if(m_status == Game::SpaceshipStatus::SHIELD)
+    {
+        setPixmap(m_pixmap.copy(Game::SPACESHIP_SHIELD.x(), Game::SPACESHIP_SHIELD.y(), Game::SPACESHIP_SIZE, Game::SPACESHIP_SIZE));
+    }
+    else if(m_status == Game::SpaceshipStatus::SUPER_SHOOT)
+    {
+        setPixmap(m_pixmap.copy(Game::SPACESHIP_SUPER_PROJECTILE.x(), Game::SPACESHIP_SUPER_PROJECTILE.y(), Game::SPACESHIP_SIZE, Game::SPACESHIP_SIZE));
+    }
+    else if(m_status == Game::SpaceshipStatus::TRIPLE_SHOOT)
+    {
+        setPixmap(m_pixmap.copy(Game::SPACESHIP_TRIPLE_PROJECTILE.x(), Game::SPACESHIP_TRIPLE_PROJECTILE.y(), Game::SPACESHIP_SIZE, Game::SPACESHIP_SIZE));
+    }
+    else
+    {
+        setPixmap(m_pixmap.copy(Game::SPACESHIP_NORMAL.x(), Game::SPACESHIP_NORMAL.y(), Game::SPACESHIP_SIZE, Game::SPACESHIP_SIZE));
+    }
 }
 
 void Spaceship::clampX()

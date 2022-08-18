@@ -2,6 +2,7 @@
 #define GAME_H
 #include <QSize>
 #include <QString>
+#include <QPoint>
 
 class Game
 {
@@ -17,11 +18,24 @@ public:
     static const QString PATH_TO_EXPLOSION_PIXMAP;
     static const QString PATH_TO_UFO_PIXMAP;
     static const QString PATH_TO_POWERUP_PIXMAP;
+    static const QString PATH_TO_SPACESHIP_SPRITE_PIXMAP;
 
     constexpr static const int FPS = 60;
+
+    //Spaceship
     constexpr static const float SPACESHIP_SPEED = 4.f;
     constexpr static const float SPACESHIP_PROJECTILE_SPEED = 4.f;
     constexpr static const int   SPACESHIP_SHOOT_COUNTER = 2 * (1000.0f/FPS);
+    enum class SpaceshipStatus{
+        NORMAL, SHIELD, TRIPLE_SHOOT, SUPER_SHOOT
+    };
+    constexpr static const int SPACESHIP_SIZE = 64;
+    constexpr static const QPoint SPACESHIP_NORMAL = QPoint(0,0);
+    constexpr static const QPoint SPACESHIP_TRIPLE_PROJECTILE = QPoint(64, 0);
+    constexpr static const QPoint SPACESHIP_SHIELD = QPoint(128, 0);
+    constexpr static const QPoint SPACESHIP_SUPER_PROJECTILE = QPoint(192, 0);
+
+
 
     enum class Projectile{
         SPACESHIP, ENEMY

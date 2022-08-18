@@ -3,23 +3,34 @@
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
+#include <QTimer>
+#include <QPixmap>
+#include "game.h"
 
 class Spaceship : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit Spaceship(const QPixmap &_pixmap);
+    explicit Spaceship();
     void moveLeft();
     void moveRight();
     void shootUp();
     void decrementShoutCounter();
     void hit(int healthPoint = 1);
+    void addShield();
+    void addTripleShoot();
+    void addSuperShoot();
 signals:
+private slots:
+    void updatePixmap();
 
 private:
     void clampX();
     int m_shoutCounter;
     int m_health;
+    Game::SpaceshipStatus m_status;
+    QTimer m_timer;
+    QPixmap m_pixmap;
 };
 
 #endif // SPACESHIP_H

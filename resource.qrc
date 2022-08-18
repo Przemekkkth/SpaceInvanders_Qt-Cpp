@@ -9,5 +9,6 @@
         <file>res/explosion.png</file>
         <file>res/ufo.png</file>
         <file>res/power_ups.png</file>
+        <file>res/spaceship_spritesheet.png</file>
     </qresource>
 </RCC>
