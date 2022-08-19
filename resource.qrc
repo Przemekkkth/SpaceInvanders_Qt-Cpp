@@ -2,7 +2,6 @@
     <qresource prefix="/">
         <file>res/level/level1.lvl</file>
         <file>res/level/level2.lvl</file>
-        <file>res/font/8-bit Arcade Out.ttf</file>
         <file>res/sprite/bg.png</file>
         <file>res/sprite/enemies.png</file>
         <file>res/sprite/enemy_projectile.png</file>
@@ -11,5 +10,6 @@
         <file>res/sprite/projectile.png</file>
         <file>res/sprite/spaceship_spritesheet.png</file>
         <file>res/sprite/ufo.png</file>
+        <file>res/font/Minecraft.ttf</file>
     </qresource>
 </RCC>

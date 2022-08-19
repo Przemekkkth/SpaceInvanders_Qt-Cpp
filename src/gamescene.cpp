@@ -79,6 +79,10 @@ void GameScene::loop()
         }
 
     }
+    else if(Game::SPACESHIP_DEAD)
+    {
+        m_level.drawGameOverText();
+    }
 }
 
 void GameScene::keyPressEvent(QKeyEvent *event)

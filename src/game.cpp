@@ -10,6 +10,8 @@ const QString Game::PATH_TO_UFO_PIXMAP              = ":/res/sprite/ufo.png";
 const QString Game::PATH_TO_POWERUP_PIXMAP          = ":/res/sprite/power_ups.png";
 const QString Game::PATH_TO_SPACESHIP_SPRITE_PIXMAP = ":/res/sprite/spaceship_spritesheet.png";
 
+const QString Game::PATH_TO_FONT = ":/res/font/Minecraft.ttf";
+
 bool Game::SPACESHIP_DEAD = false;
 
 int  Game::MIN_ENEMY_SHOOT_COUNTER  = 0.75 * (1000.0f/FPS);

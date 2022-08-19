@@ -3,6 +3,7 @@
 #include <QSize>
 #include <QString>
 #include <QPoint>
+#include <QColor>
 
 class Game
 {
@@ -31,6 +32,10 @@ public:
     static const QString PATH_TO_UFO_PIXMAP;
     static const QString PATH_TO_POWERUP_PIXMAP;
     static const QString PATH_TO_SPACESHIP_SPRITE_PIXMAP;
+
+    //Font
+    static const QString PATH_TO_FONT;
+    constexpr static const QColor FONT_COLOR = QColor(255, 255, 255);
 
     //Spaceship
     constexpr static const float SPACESHIP_SPEED = 4.f;
@@ -77,7 +82,6 @@ public:
         SHIELD = 0, TRIPLE_PROJECTILE, SUPER_PROJECTILE
     };
     constexpr static const int TIME_OF_POWER_UP_WORKS = 3000;//ms
-
 };
 
 #endif // GAME_H

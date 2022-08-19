@@ -1,12 +1,16 @@
 #include "level.h"
 #include <QFile>
 #include <QTextStream>
+#include <QFontDatabase>
 #include "enemy.h"
 #include "ufo.h"
 
 Level::Level(QGraphicsScene *scene)
 {
     m_scene = scene;
+    int id = QFontDatabase::addApplicationFont(Game::PATH_TO_FONT);
+    m_fontFamily = QFontDatabase::applicationFontFamilies(id).at(0);
+
 }
 
 void Level::loadLevel(QString pathToFile)
@@ -75,10 +79,51 @@ void Level::loadLevel(QString pathToFile)
 
         }
     }
+    initTextItem();
     file.close();
 }
 
 void Level::reset()
 {
     loadLevel(m_currentPathLevel);
+}
+
+void Level::drawGameOverText()
+{
+    if(!m_gameOverText->scene())
+    {
+        m_scene->addItem(m_gameOverText);
+    }
+
+    if(!m_restartTextItem->scene())
+    {
+        m_scene->addItem(m_restartTextItem);
+    }
+
+    if(!m_nextTextItem->scene())
+    {
+        m_scene->addItem(m_nextTextItem);
+    }
+}
+
+void Level::initTextItem()
+{
+    m_gameOverText = new QGraphicsSimpleTextItem("GAME OVER");
+    m_gameOverText->setFont(QFont(m_fontFamily, 50, 100));
+    m_gameOverText->setBrush(Game::FONT_COLOR);
+    m_gameOverText->setPen(Game::FONT_COLOR);
+    m_gameOverText->setPos(Game::RESOLUTION.width()/2-m_gameOverText->boundingRect().width()/2, 100);
+
+    m_restartTextItem = new QGraphicsSimpleTextItem("r - restart");
+    m_restartTextItem->setFont(QFont(m_fontFamily, 40, 100));
+    m_restartTextItem->setBrush(Game::FONT_COLOR);
+    m_restartTextItem->setPen(Game::FONT_COLOR);
+    m_restartTextItem->setPos(Game::RESOLUTION.width()/2-m_gameOverText->boundingRect().width()/2, 200);
+
+    m_nextTextItem = new QGraphicsSimpleTextItem("n - next level");
+    m_nextTextItem->setFont(QFont(m_fontFamily, 40, 100));
+    m_nextTextItem->setBrush(Game::FONT_COLOR);
+    m_nextTextItem->setPen(Game::FONT_COLOR);
+    m_nextTextItem->setPos(Game::RESOLUTION.width()/2-m_gameOverText->boundingRect().width()/2, 300);
+
 }
