@@ -1,0 +1,2 @@
+//Enemy{e0,...e4}|Ufo{u},x,y,direction(-1left.1right);
+e0,0,0,1;e1,0,1,1;e2,2,2,-1;e3,3,3,1;e4,3,3,1;u,1,-1,1

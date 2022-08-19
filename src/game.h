@@ -57,8 +57,8 @@ public:
     constexpr static const int COUNT_OF_ENEMY_ANIM_FRAMES = 2;
     constexpr static const int TIME_OF_ENEMY_FRAME = 250;
 
-    constexpr static const int   MIN_ENEMY_SHOOT_COUNTER = 0.75 * (1000.0f/FPS);
-    constexpr static const int   MAX_ENEMY_SHOOT_COUNTER = 1.75 * (1000.0f/FPS);
+    static int   MIN_ENEMY_SHOOT_COUNTER;
+    static int   MAX_ENEMY_SHOOT_COUNTER;
 
     //ExplosionAnim
     constexpr static const int COUNT_OF_EXPLOSION_ANIM_FRAMES = 11;

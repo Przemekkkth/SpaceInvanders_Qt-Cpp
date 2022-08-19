@@ -13,6 +13,9 @@ const QString Game::PATH_TO_SPACESHIP_SPRITE_PIXMAP = ":/res/spaceship_spriteshe
 
 bool Game::SPACESHIP_DEAD = false;
 
+int  Game::MIN_ENEMY_SHOOT_COUNTER  = 0.75 * (1000.0f/FPS);
+int  Game::MAX_ENEMY_SHOOT_COUNTER  = 1.75 * (1000.0f/FPS);;
+
 Game::Game()
 {
 

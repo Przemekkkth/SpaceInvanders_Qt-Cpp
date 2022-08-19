@@ -10,5 +10,6 @@
         <file>res/ufo.png</file>
         <file>res/power_ups.png</file>
         <file>res/spaceship_spritesheet.png</file>
+        <file>res/level/level1.lvl</file>
     </qresource>
 </RCC>
