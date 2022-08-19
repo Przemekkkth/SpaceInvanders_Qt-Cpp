@@ -11,5 +11,6 @@
         <file>res/power_ups.png</file>
         <file>res/spaceship_spritesheet.png</file>
         <file>res/level/level1.lvl</file>
+        <file>res/level/level2.lvl</file>
     </qresource>
 </RCC>

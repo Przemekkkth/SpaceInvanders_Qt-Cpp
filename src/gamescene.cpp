@@ -14,7 +14,7 @@ GameScene::GameScene(QObject *parent)
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
 
-    m_level.loadLevel(":/res/level/level1.lvl");
+    m_level.loadLevel(":/res/level/level2.lvl");
     //    m_enemy1 = new Enemy(0);
     //    addItem(m_enemy1);
     //    m_enemy2 = new Enemy(1, Game::Direction::LEFT);

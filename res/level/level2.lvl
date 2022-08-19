@@ -1,0 +1,22 @@
+//Enemy{e0,...e4}|Ufo{u},x,y,direction(-1left.1right);
+//first column
+e0,0,0,1
+e1,0,1,1
+e2,0,2,1
+e3,0,3,1
+e4,0,4,1
+//second column
+e0,1,0,1
+e1,1,1,1
+e2,1,2,1
+e3,1,3,1
+e4,1,4,1
+//third column
+e0,2,0,1
+e1,2,1,1
+e2,2,2,1
+e3,2,3,1
+e4,2,4,1
+//ufo
+u,1,-1,1
+u,1,-8,1
