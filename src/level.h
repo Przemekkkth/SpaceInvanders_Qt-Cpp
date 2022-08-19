@@ -14,10 +14,14 @@ public:
     void loadLevel(QString pathToFile);
     void reset();
     void drawGameOverText();
+    void incrementCurrentLevel();
+    int currentLevel() const;
 signals:
 
 private:
     void initTextItem();
+    int m_currentLevel;
+
     QString m_currentPathLevel, m_fontFamily;
     QGraphicsScene* m_scene;
     QGraphicsSimpleTextItem *m_gameOverText, *m_restartTextItem, *m_nextTextItem;

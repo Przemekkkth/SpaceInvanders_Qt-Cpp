@@ -21,6 +21,7 @@ public:
     constexpr static const int GRID_HEIGHT = RESOLUTION.height()/GRID_SIZE;
     static int convertPixelToGridPoint(int pixelVal);
     static int convertGridPointToPixel(int gridPointVal);
+    static const QStringList PATH_TO_LEVELS;
 
     //Sprite
     static const QString PATH_TO_SPACESHIP_PIXMAP;

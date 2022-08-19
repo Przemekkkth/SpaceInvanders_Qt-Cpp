@@ -14,7 +14,7 @@ GameScene::GameScene(QObject *parent)
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
 
-    m_level.loadLevel(":/res/level/level2.lvl");
+    m_level.loadLevel(":/res/level/level1.lvl");
     //    m_enemy1 = new Enemy(0);
     //    addItem(m_enemy1);
     //    m_enemy2 = new Enemy(1, Game::Direction::LEFT);
@@ -118,6 +118,20 @@ void GameScene::keyPressEvent(QKeyEvent *event)
            m_bgItem->setZValue(-1);
            addItem(m_bgItem);
            m_level.reset();
+           addItem(&m_spaceship);
+           m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
+        }
+        if(event->key() == Qt::Key_N && Game::SPACESHIP_DEAD)
+        {
+           Game::SPACESHIP_DEAD = false;
+           clear();
+           m_bgItem = new QGraphicsPixmapItem(QPixmap(Game::PATH_TO_BG_PIXMAP));
+           m_bgItem->setZValue(-1);
+           addItem(m_bgItem);
+
+           m_level.incrementCurrentLevel();
+           m_level.loadLevel(Game::PATH_TO_LEVELS[m_level.currentLevel()]);
+
            addItem(&m_spaceship);
            m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
         }

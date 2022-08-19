@@ -1,5 +1,9 @@
 #include "game.h"
 
+const QStringList Game::PATH_TO_LEVELS = QStringList() << ":/res/level/level1.lvl"
+                                                       << ":/res/level/level2.lvl"
+                                                       << ":/res/level/level3.lvl";
+
 const QString Game::PATH_TO_SPACESHIP_PIXMAP        = ":/res/sprite/spaceship.png";
 const QString Game::PATH_TO_ENEMY_PROJECTILE_PIXMAP = ":/res/sprite/enemy_projectile.png";
 const QString Game::PATH_TO_PROJECTILE_PIXMAP       = ":/res/sprite/projectile.png";

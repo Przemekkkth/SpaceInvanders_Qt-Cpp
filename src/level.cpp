@@ -6,6 +6,7 @@
 #include "ufo.h"
 
 Level::Level(QGraphicsScene *scene)
+    : m_currentLevel(0)
 {
     m_scene = scene;
     int id = QFontDatabase::addApplicationFont(Game::PATH_TO_FONT);
@@ -104,6 +105,17 @@ void Level::drawGameOverText()
     {
         m_scene->addItem(m_nextTextItem);
     }
+}
+
+void Level::incrementCurrentLevel()
+{
+    m_currentLevel++;
+    m_currentLevel %= Game::PATH_TO_LEVELS.size();
+}
+
+int Level::currentLevel() const
+{
+    return m_currentLevel;
 }
 
 void Level::initTextItem()

@@ -11,5 +11,6 @@
         <file>res/sprite/spaceship_spritesheet.png</file>
         <file>res/sprite/ufo.png</file>
         <file>res/font/Minecraft.ttf</file>
+        <file>res/level/level3.lvl</file>
     </qresource>
 </RCC>
