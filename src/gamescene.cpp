@@ -78,10 +78,23 @@ void GameScene::loop()
             Ufo::s_ufoManager.at(idx)->move();
         }
 
+        checkNextLevelActivated();
+        //qDebug() << "Enemy count " << Enemy::s_enemyManager.size();
     }
     else if(Game::SPACESHIP_DEAD)
     {
         m_level.drawGameOverText();
+    }
+}
+
+void GameScene::checkNextLevelActivated()
+{
+    if(Enemy::s_enemyManager.isEmpty())
+    {
+        //Game::SPACESHIP_DEAD = true;
+        m_level.incrementCurrentLevel();
+        m_level.loadLevel(Game::PATH_TO_LEVELS[m_level.currentLevel()]);
+        Game::SPACESHIP_DEAD = false;
     }
 }
 

@@ -23,6 +23,7 @@ private slots:
     void loop();
 
 private:
+    void checkNextLevelActivated();
     Spaceship m_spaceship;
     Enemy *m_enemy1, *m_enemy2, *m_enemy3, *m_enemy4, *m_enemy5;
     Ufo *m_ufo;
