@@ -1,16 +1,15 @@
 <RCC>
     <qresource prefix="/">
-        <file>res/spaceship.png</file>
-        <file>res/projectile.png</file>
-        <file>res/bg.png</file>
-        <file>res/enemy1.png</file>
-        <file>res/enemies.png</file>
-        <file>res/enemy_projectile.png</file>
-        <file>res/explosion.png</file>
-        <file>res/ufo.png</file>
-        <file>res/power_ups.png</file>
-        <file>res/spaceship_spritesheet.png</file>
         <file>res/level/level1.lvl</file>
         <file>res/level/level2.lvl</file>
+        <file>res/font/8-bit Arcade Out.ttf</file>
+        <file>res/sprite/bg.png</file>
+        <file>res/sprite/enemies.png</file>
+        <file>res/sprite/enemy_projectile.png</file>
+        <file>res/sprite/explosion.png</file>
+        <file>res/sprite/power_ups.png</file>
+        <file>res/sprite/projectile.png</file>
+        <file>res/sprite/spaceship_spritesheet.png</file>
+        <file>res/sprite/ufo.png</file>
     </qresource>
 </RCC>

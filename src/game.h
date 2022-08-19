@@ -13,7 +13,6 @@ public:
     static const QString PATH_TO_PROJECTILE_PIXMAP;
     static const QString PATH_TO_ENEMY_PROJECTILE_PIXMAP;
     static const QString PATH_TO_BG_PIXMAP;
-    static const QString PATH_TO_ENEMY_PIXMAP;
     static const QString PATH_TO_ENEMIES_PIXMAP;
     static const QString PATH_TO_EXPLOSION_PIXMAP;
     static const QString PATH_TO_UFO_PIXMAP;
