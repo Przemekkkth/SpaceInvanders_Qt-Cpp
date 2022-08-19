@@ -1,5 +1,6 @@
 #include "spaceship.h"
 #include "game.h"
+#include "animation.h"
 #include <QGraphicsScene>
 #include "projectile.h"
 
@@ -34,9 +35,37 @@ void Spaceship::shootUp()
         m_shoutCounter = Game::SPACESHIP_SHOOT_COUNTER;
         if(scene())
         {
-            Projectile* p = new Projectile(Game::Projectile::SPACESHIP);
-            p->setPos(x()+30, y());
-            scene()->addItem(p);
+            if(m_status == Game::SpaceshipStatus::TRIPLE_SHOOT)
+            {
+                Projectile* p0 = new Projectile(Game::Projectile::SPACESHIP);
+                p0->setPos(x()+30, y()+1);
+                scene()->addItem(p0);
+                Projectile* p1 = new Projectile(Game::Projectile::SPACESHIP);
+                p1->setPos(x()+8, y()+18);
+                scene()->addItem(p1);
+                Projectile* p2 = new Projectile(Game::Projectile::SPACESHIP);
+                p2->setPos(x()+52, y()+18);
+                scene()->addItem(p2);
+            }
+            else if(m_status == Game::SpaceshipStatus::SUPER_SHOOT)
+            {
+                Projectile* p0 = new Projectile(Game::Projectile::SPACESHIP);
+                p0->setPos(x()+30, y()*1);
+                scene()->addItem(p0);
+                Projectile* p1 = new Projectile(Game::Projectile::SPACESHIP);
+                p1->setPos(x()+25, y()+4);
+                scene()->addItem(p1);
+                Projectile* p2 = new Projectile(Game::Projectile::SPACESHIP);
+                p2->setPos(x()+35, y()+4);
+                scene()->addItem(p2);
+            }
+            else
+            {
+                Projectile* p = new Projectile(Game::Projectile::SPACESHIP);
+                p->setPos(x()+30, y());
+                scene()->addItem(p);
+            }
+
         }
     }
 
@@ -53,22 +82,52 @@ void Spaceship::decrementShoutCounter()
 
 void Spaceship::hit(int healthPoint)
 {
+    if(m_status == Game::SpaceshipStatus::SHIELD)
+    {
+        return;
+    }
     m_health -= healthPoint;
+    if(m_health <= 0)
+    {
+        Game::SPACESHIP_DEAD = true;
+        if(scene())
+        {
+            Animation *explosionAnim = new Animation(QPixmap(Game::PATH_TO_EXPLOSION_PIXMAP), QSize(Game::ENEMY_SIZE, Game::ENEMY_SIZE), Game::COUNT_OF_EXPLOSION_ANIM_FRAMES, Game::TIME_OF_EXPLOSION_ANIM_FRAME);
+            explosionAnim->setPos(pos());
+            scene()->addItem(explosionAnim);
+            scene()->removeItem(this);
+            //delete this;
+        }
+    }
 }
 
 void Spaceship::addShield()
 {
     m_status = Game::SpaceshipStatus::SHIELD;
+    QTimer::singleShot(Game::TIME_OF_POWER_UP_WORKS, [this](){
+        backToNormalStatus();
+    });
 }
 
 void Spaceship::addTripleShoot()
 {
     m_status = Game::SpaceshipStatus::TRIPLE_SHOOT;
+    QTimer::singleShot(Game::TIME_OF_POWER_UP_WORKS, [this](){
+        backToNormalStatus();
+    });
 }
 
 void Spaceship::addSuperShoot()
 {
     m_status = Game::SpaceshipStatus::SUPER_SHOOT;
+    QTimer::singleShot(Game::TIME_OF_POWER_UP_WORKS, [this](){
+        backToNormalStatus();
+    });
+}
+
+void Spaceship::backToNormalStatus()
+{
+    m_status = Game::SpaceshipStatus::NORMAL;
 }
 
 void Spaceship::updatePixmap()

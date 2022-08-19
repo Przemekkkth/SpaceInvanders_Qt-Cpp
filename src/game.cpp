@@ -11,6 +11,8 @@ const QString Game::PATH_TO_UFO_PIXMAP        = ":/res/ufo.png";
 const QString Game::PATH_TO_POWERUP_PIXMAP    = ":/res/power_ups.png";
 const QString Game::PATH_TO_SPACESHIP_SPRITE_PIXMAP = ":/res/spaceship_spritesheet.png";
 
+bool Game::SPACESHIP_DEAD = false;
+
 Game::Game()
 {
 

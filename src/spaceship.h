@@ -20,6 +20,7 @@ public:
     void addShield();
     void addTripleShoot();
     void addSuperShoot();
+    void backToNormalStatus();
 signals:
 private slots:
     void updatePixmap();

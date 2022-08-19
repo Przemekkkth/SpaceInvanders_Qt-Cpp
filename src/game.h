@@ -34,7 +34,7 @@ public:
     constexpr static const QPoint SPACESHIP_TRIPLE_PROJECTILE = QPoint(64, 0);
     constexpr static const QPoint SPACESHIP_SHIELD = QPoint(128, 0);
     constexpr static const QPoint SPACESHIP_SUPER_PROJECTILE = QPoint(192, 0);
-
+    static bool SPACESHIP_DEAD;
 
 
     enum class Projectile{
@@ -77,6 +77,7 @@ public:
     enum class PowerUpType{
         SHIELD = 0, TRIPLE_PROJECTILE, SUPER_PROJECTILE
     };
+    constexpr static const int TIME_OF_POWER_UP_WORKS = 3000;//ms
 
 };
 

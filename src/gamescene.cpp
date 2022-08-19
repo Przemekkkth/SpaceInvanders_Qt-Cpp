@@ -7,6 +7,7 @@ GameScene::GameScene(QObject *parent)
       m_leftArrowPressed(false), m_rightArrowPressed(false), m_spacebarPressed(false), m_loopTime(0.0f),
       m_deltaTime(0.0f), m_loopSpeed(int(1000.0f/Game::FPS))
 {
+    srand(time(0));
     setSceneRect(0,0, Game::RESOLUTION.width(), Game::RESOLUTION.height());
 
     m_bgItem = new QGraphicsPixmapItem(QPixmap(Game::PATH_TO_BG_PIXMAP));
@@ -48,7 +49,7 @@ void GameScene::loop()
     m_elapsedTimer.restart();
 
     m_loopTime += m_deltaTime;
-    if( m_loopTime > m_loopSpeed)
+    if( m_loopTime > m_loopSpeed && !Game::SPACESHIP_DEAD)
     {
         m_loopTime -= m_loopSpeed;
         if(m_leftArrowPressed)

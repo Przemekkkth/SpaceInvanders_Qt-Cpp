@@ -10,6 +10,7 @@ Ufo::Ufo()
 {
     m_direction = Game::Direction::RIGHT;
     m_pixmap = pixmap();
+    setPixmap(m_pixmap.copy(m_currentFrame * Game::UFO_SIZE, 0, Game::UFO_SIZE, Game::UFO_SIZE));
 
     connect(&m_timer, &QTimer::timeout, this, &Ufo::updatePixmap);
     m_timer.start(Game::TIME_OF_ENEMY_FRAME);
