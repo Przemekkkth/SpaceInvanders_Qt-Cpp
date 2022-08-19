@@ -104,6 +104,21 @@ void GameScene::keyPressEvent(QKeyEvent *event)
             break;
         }
     }
+    if(!event->isAutoRepeat())
+    {
+        if(event->key() == Qt::Key_R && Game::SPACESHIP_DEAD)
+        {
+           Game::SPACESHIP_DEAD = false;
+           clear();
+           m_bgItem = new QGraphicsPixmapItem(QPixmap(Game::PATH_TO_BG_PIXMAP));
+           m_bgItem->setZValue(-1);
+           addItem(m_bgItem);
+           m_level.reset();
+           addItem(&m_spaceship);
+           m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
+        }
+    }
+
     QGraphicsScene::keyPressEvent(event);
 }
 

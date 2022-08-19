@@ -17,6 +17,7 @@ void Level::loadLevel(QString pathToFile)
     {
         qDebug() << "File " << pathToFile << " not exist";
     }
+    m_currentPathLevel = pathToFile;
     while(!in.atEnd()) {
         QString line = in.readLine();
         if(line.startsWith("//"))
@@ -75,4 +76,9 @@ void Level::loadLevel(QString pathToFile)
         }
     }
     file.close();
+}
+
+void Level::reset()
+{
+    loadLevel(m_currentPathLevel);
 }

@@ -10,9 +10,11 @@ class Level : public QObject
 public:
     explicit Level(QGraphicsScene* scene);
     void loadLevel(QString pathToFile);
+    void reset();
 signals:
 
 private:
+    QString m_currentPathLevel;
     QGraphicsScene* m_scene;
 };
 

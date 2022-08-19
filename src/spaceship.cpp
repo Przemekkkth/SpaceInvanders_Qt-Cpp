@@ -9,7 +9,7 @@ Spaceship::Spaceship()
 {
     m_pixmap = pixmap();
     setPixmap(m_pixmap.copy(Game::SPACESHIP_NORMAL.x(), Game::SPACESHIP_NORMAL.y(), Game::SPACESHIP_SIZE, Game::SPACESHIP_SIZE));
-    m_health = 999;
+    m_health = 1;
 
     m_status = Game::SpaceshipStatus::NORMAL;
     connect(&m_timer, &QTimer::timeout, this, &Spaceship::updatePixmap);
