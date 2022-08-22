@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QFontDatabase>
+#include "gamescene.h"
 #include "enemy.h"
 #include "ufo.h"
 
@@ -41,41 +42,54 @@ void Level::loadLevel(QString pathToFile)
             {
                 qFatal("Invalid file format: Enemy{e0,...e4}|Ufo{u},x,y,direction(-1left.1right);");
             }
+
+            Enemy* enemy = nullptr;
+            Ufo *ufo = nullptr;
             if(propertiesOfElement.at(0) == "e0")
             {
-                Enemy* enemy = new Enemy(0, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
+                enemy = new Enemy(0, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
                 enemy->setPosition(propertiesOfElement.at(1).toInt(), propertiesOfElement.at(2).toInt());
                 m_scene->addItem(enemy);
             }
             else if(propertiesOfElement.at(0) == "e1")
             {
-                Enemy* enemy = new Enemy(1, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
+                enemy = new Enemy(1, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
                 enemy->setPosition(propertiesOfElement.at(1).toInt(), propertiesOfElement.at(2).toInt());
                 m_scene->addItem(enemy);
             }
             else if(propertiesOfElement.at(0) == "e2")
             {
-                Enemy* enemy = new Enemy(2, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
+                enemy = new Enemy(2, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
                 enemy->setPosition(propertiesOfElement.at(1).toInt(), propertiesOfElement.at(2).toInt());
                 m_scene->addItem(enemy);
             }
             else if(propertiesOfElement.at(0) == "e3")
             {
-                Enemy* enemy = new Enemy(3, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
+                enemy = new Enemy(3, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
                 enemy->setPosition(propertiesOfElement.at(1).toInt(), propertiesOfElement.at(2).toInt());
                 m_scene->addItem(enemy);
             }
             else if(propertiesOfElement.at(0) == "e4")
             {
-                Enemy* enemy = new Enemy(4, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
+                enemy = new Enemy(4, propertiesOfElement.at(3).toInt() == 1 ? Game::Direction::RIGHT : Game::Direction::LEFT);
                 enemy->setPosition(propertiesOfElement.at(1).toInt(), propertiesOfElement.at(2).toInt());
                 m_scene->addItem(enemy);
             }
             else if(propertiesOfElement.at(0) == "u")
             {
-                Ufo *ufo = new Ufo();
+                ufo = new Ufo();
                 ufo->setPosition(propertiesOfElement.at(1).toInt(), propertiesOfElement.at(2).toInt());
                 m_scene->addItem(ufo);
+            }
+
+            GameScene *scene = qobject_cast<GameScene*>(m_scene);
+            if(enemy)
+            {
+               connect(enemy, &Enemy::deadIsActivated, scene, &GameScene::playEnemyDeadSFX);
+            }
+            if(ufo)
+            {
+              connect(ufo, &Ufo::deadIsActivated, scene, &GameScene::playEnemyDeadSFX);
             }
 
         }

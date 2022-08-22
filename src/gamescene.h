@@ -4,6 +4,7 @@
 #include <QGraphicsScene>
 #include <QTimer>
 #include <QElapsedTimer>
+#include <QSoundEffect>
 
 #include "level.h"
 #include "spaceship.h"
@@ -19,6 +20,8 @@ public:
 
 signals:
 
+public slots:
+    void playEnemyDeadSFX();
 private slots:
     void loop();
 
@@ -35,6 +38,7 @@ private:
     QElapsedTimer m_elapsedTimer;
     QGraphicsPixmapItem *m_bgItem;
     Level m_level;
+    QSoundEffect m_enemyDeadSFX;
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
     virtual void keyReleaseEvent(QKeyEvent *event) override;

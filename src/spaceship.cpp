@@ -14,6 +14,9 @@ Spaceship::Spaceship()
     m_status = Game::SpaceshipStatus::NORMAL;
     connect(&m_timer, &QTimer::timeout, this, &Spaceship::updatePixmap);
     m_timer.start(1000);
+
+    m_explosionSFX.setSource(Game::ExplosionSFX);
+    m_shootSFX.setSource(Game::ShootSFX);
 }
 
 void Spaceship::moveLeft()
@@ -33,6 +36,7 @@ void Spaceship::shootUp()
     if(m_shoutCounter == 0)
     {
         m_shoutCounter = Game::SPACESHIP_SHOOT_COUNTER;
+        m_shootSFX.play();
         if(scene())
         {
             if(m_status == Game::SpaceshipStatus::TRIPLE_SHOOT)
@@ -96,6 +100,7 @@ void Spaceship::hit(int healthPoint)
             explosionAnim->setPos(pos());
             scene()->addItem(explosionAnim);
             scene()->removeItem(this);
+            m_explosionSFX.play();
             //delete this;
         }
     }

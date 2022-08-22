@@ -7,6 +7,7 @@
 #include <QTimer>
 #include "game.h"
 #include <QList>
+#include <QSoundEffect>
 
 class Enemy : public QObject, public QGraphicsPixmapItem
 {
@@ -24,7 +25,7 @@ public:
     void makeShoot();
     void hit(int healthPoint = 1);
 signals:
-
+    void deadIsActivated();
 private slots:
     void updatePixmap();
 private:

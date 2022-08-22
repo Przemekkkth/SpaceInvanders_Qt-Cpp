@@ -126,6 +126,8 @@ void Enemy::hit(int healthPoint)
             explosionAnim->setPos(pos());
             scene()->addItem(explosionAnim);
             scene()->removeItem(this);
+            emit deadIsActivated();
+            //connect(&m_soundEffect, &QSoundEffect::)
             delete this;
         }
     }

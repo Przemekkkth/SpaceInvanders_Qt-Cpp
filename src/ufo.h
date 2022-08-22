@@ -20,6 +20,7 @@ public:
     void hit(int healthPoint = 1);
     static QList<Ufo*> s_ufoManager;
 signals:
+    void deadIsActivated();
 private slots:
     void updatePixmap();
 

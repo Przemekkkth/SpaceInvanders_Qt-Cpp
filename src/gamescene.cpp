@@ -7,6 +7,7 @@ GameScene::GameScene(QObject *parent)
       m_leftArrowPressed(false), m_rightArrowPressed(false), m_spacebarPressed(false), m_loopTime(0.0f),
       m_deltaTime(0.0f), m_loopSpeed(int(1000.0f/Game::FPS)), m_level(this)
 {
+    m_enemyDeadSFX.setSource(Game::InvaderKilledSFX);
     srand(time(0));
     setSceneRect(0,0, Game::RESOLUTION.width(), Game::RESOLUTION.height());
 
@@ -14,22 +15,7 @@ GameScene::GameScene(QObject *parent)
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
 
-    m_level.loadLevel(":/res/level/level1.lvl");
-    //    m_enemy1 = new Enemy(0);
-    //    addItem(m_enemy1);
-    //    m_enemy2 = new Enemy(1, Game::Direction::LEFT);
-    //    m_enemy2->setPosition(2,2);
-    //    addItem(m_enemy2);
-    //    m_enemy3 = new Enemy(2, Game::Direction::LEFT);
-    //    m_enemy3->setPosition(3,2);
-    //    addItem(m_enemy3);
-    //    m_enemy4 = new Enemy(3, Game::Direction::DOWN);
-    //    m_enemy4->setPosition(3,4);
-    //    addItem(m_enemy4);
-
-    //    m_enemy5 = new Enemy(4);
-    //    m_enemy5->setPosition(4,4);
-    //    addItem(m_enemy5);
+    m_level.loadLevel(":/res/level/level4.lvl");
 
     m_ufo = new Ufo();
     m_ufo->setPosition(0,9);
@@ -41,7 +27,11 @@ GameScene::GameScene(QObject *parent)
     connect(&m_timer, &QTimer::timeout, this, &GameScene::loop);
     m_timer.start(int(1000.0f/Game::FPS));
     m_elapsedTimer.start();
+}
 
+void GameScene::playEnemyDeadSFX()
+{
+    m_enemyDeadSFX.play();
 }
 
 void GameScene::loop()

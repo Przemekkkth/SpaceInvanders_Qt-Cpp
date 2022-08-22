@@ -113,6 +113,8 @@ void Ufo::hit(int healthPoint)
             powerUp->setPos(x() + powerUp->boundingRect().width()/2, y() - powerUp->boundingRect().height()/2);
             scene()->addItem(powerUp);
 
+            emit deadIsActivated();
+
             scene()->removeItem(this);
             delete this;
         }

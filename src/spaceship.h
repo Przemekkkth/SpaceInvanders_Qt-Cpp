@@ -6,6 +6,7 @@
 #include <QTimer>
 #include <QPixmap>
 #include "game.h"
+#include <QSoundEffect>
 
 class Spaceship : public QObject, public QGraphicsPixmapItem
 {
@@ -32,6 +33,8 @@ private:
     Game::SpaceshipStatus m_status;
     QTimer m_timer;
     QPixmap m_pixmap;
+    QSoundEffect m_explosionSFX;
+    QSoundEffect m_shootSFX;
 };
 
 #endif // SPACESHIP_H

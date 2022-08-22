@@ -4,6 +4,7 @@
 #include <QString>
 #include <QPoint>
 #include <QColor>
+#include <QUrl>
 
 class Game
 {
@@ -37,6 +38,12 @@ public:
     //Font
     static const QString PATH_TO_FONT;
     constexpr static const QColor FONT_COLOR = QColor(255, 255, 255);
+
+    //SFX
+    static const QUrl ExplosionSFX;
+    static const QUrl InvaderKilledSFX;
+    static const QUrl ShootSFX;
+
 
     //Spaceship
     constexpr static const float SPACESHIP_SPEED = 4.f;
