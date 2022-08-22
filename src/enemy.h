@@ -29,8 +29,9 @@ signals:
 private slots:
     void updatePixmap();
 private:
+    void checkCollisionWithSpaceship();
 
-    Game::Direction m_direcion;
+    Game::Direction m_direction;
     QPoint m_srcPoint;
     QTimer m_timer;
     int m_currentFrame;

@@ -3,6 +3,7 @@
 #include <QRandomGenerator>
 #include "animation.h"
 #include "projectile.h"
+#include "spaceship.h"
 
 QList<Enemy*> Enemy::s_enemyManager;
 int Enemy::s_shootCounter;
@@ -10,14 +11,14 @@ int Enemy::s_shootCounter;
 Enemy::Enemy(int type, Game::Direction direction)
     : QGraphicsPixmapItem(QPixmap(Game::PATH_TO_ENEMIES_PIXMAP)), m_currentFrame(0)
 {
-    m_health = type;
+    m_health = type+1; //1-5
     if(direction == Game::Direction::RIGHT)
     {
-        m_direcion = Game::Direction::RIGHT;
+        m_direction = Game::Direction::RIGHT;
     }
     else
     {
-        m_direcion = Game::Direction::LEFT;
+        m_direction = Game::Direction::LEFT;
     }
 
     m_pixmap = pixmap().copy(type * Game::ENEMY_SIZE * Game::COUNT_OF_ENEMY_ANIM_FRAMES, 0, Game::COUNT_OF_ENEMY_ANIM_FRAMES*Game::ENEMY_SIZE, Game::ENEMY_SIZE);
@@ -35,17 +36,17 @@ Enemy::~Enemy()
 
 void Enemy::move()
 {
-    if(m_direcion == Game::Direction::RIGHT)
+    if(m_direction == Game::Direction::RIGHT)
     {
         moveBy(Game::ENEMY_SPEED, 0);
         m_srcPoint = QPoint( (Game::GRID_WIDTH-1)*Game::GRID_SIZE, y());
     }
-    else if(m_direcion == Game::Direction::LEFT)
+    else if(m_direction == Game::Direction::LEFT)
     {
         moveBy(-Game::ENEMY_SPEED, 0);
         m_srcPoint = QPoint( 0, y());
     }
-    else if(m_direcion == Game::Direction::DOWN)
+    else if(m_direction == Game::Direction::DOWN)
     {
         moveBy(0, Game::ENEMY_SPEED);
         m_srcPoint = QPoint( x(), Game::convertPixelToGridPoint(y()) * Game::GRID_SIZE);
@@ -53,24 +54,34 @@ void Enemy::move()
 
     if(pos().toPoint() == m_srcPoint)
     {
-        if(m_direcion == Game::Direction::LEFT || m_direcion == Game::Direction::RIGHT)
+        if(m_direction == Game::Direction::LEFT || m_direction == Game::Direction::RIGHT)
         {
-            m_direcion = Game::Direction::DOWN;
+            m_direction = Game::Direction::DOWN;
         }
-        else if(m_direcion == Game::Direction::DOWN)
+        else if(m_direction == Game::Direction::DOWN)
         {
             if(x() == 0)
             {
-                m_direcion = Game::Direction::RIGHT;
+                m_direction = Game::Direction::RIGHT;
             }
             else
             {
-                m_direcion = Game::Direction::LEFT;
+                m_direction = Game::Direction::LEFT;
             }
         }
     }
 
+    if(x() + boundingRect().width() > Game::RESOLUTION.width())
+    {
+        m_direction = Game::Direction::LEFT;
+    }
+    if(x() < 0)
+    {
+        m_direction = Game::Direction::RIGHT;
 
+    }
+
+    checkCollisionWithSpaceship();
 }
 
 void Enemy::setPosition(int grid_x, int grid_y)
@@ -138,4 +149,18 @@ void Enemy::updatePixmap()
     m_currentFrame++;
     m_currentFrame %= Game::COUNT_OF_ENEMY_ANIM_FRAMES;
     setPixmap(m_pixmap.copy(m_currentFrame * Game::ENEMY_SIZE, 0, Game::ENEMY_SIZE, Game::ENEMY_SIZE));
+}
+
+void Enemy::checkCollisionWithSpaceship()
+{
+    QList<QGraphicsItem*> collidedList = collidingItems();
+    for(int idx = collidedList.size() - 1; idx >= 0; --idx)
+    {
+        Spaceship* spaceship = dynamic_cast<Spaceship*>(collidedList[idx]);
+        if(spaceship)
+        {
+            spaceship->hit(1000);
+            hit(10);
+        }
+    }
 }
