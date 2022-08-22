@@ -17,7 +17,7 @@ GameScene::GameScene(QObject *parent)
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
 
-    m_level.loadLevel(":/res/level/level7.lvl");
+    m_level.loadLevel(":/res/level/level1.lvl");
 
 
     addItem(&m_spaceship);
