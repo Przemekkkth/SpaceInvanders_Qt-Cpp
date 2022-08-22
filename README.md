@@ -17,3 +17,4 @@ qmake && make
 ## Addons
 * [Qt](https://www.qt.io/) - Cross-Platform software for embedded & desktop
 * [Font](https://www.dafont.com/) - font
+* [Yt](https://youtu.be/Ax7pYgQ_94g) - gameplay
