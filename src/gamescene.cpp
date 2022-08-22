@@ -1,6 +1,8 @@
 #include "gamescene.h"
 #include "game.h"
 #include <QKeyEvent>
+#include <QDir>
+#include <QPainter>
 
 GameScene::GameScene(QObject *parent)
     : QGraphicsScene{parent}, m_spaceship(),
@@ -15,11 +17,8 @@ GameScene::GameScene(QObject *parent)
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
 
-    m_level.loadLevel(":/res/level/level1.lvl");
+    m_level.loadLevel(":/res/level/level7.lvl");
 
-    m_ufo = new Ufo();
-    m_ufo->setPosition(0,9);
-    addItem(m_ufo);
 
     addItem(&m_spaceship);
     m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
@@ -88,6 +87,19 @@ void GameScene::checkNextLevelActivated()
     }
 }
 
+void GameScene::saveScene()
+{
+    static int index = 0;
+    QString fileName = QDir::currentPath() + QDir::separator() + "screen" + QString::number(index++) + ".png";
+    QRect rect = sceneRect().toAlignedRect();
+    QImage image(rect.size(), QImage::Format_ARGB32);
+    image.fill(Qt::transparent);
+    QPainter painter(&image);
+    render(&painter);
+    image.save(fileName);
+    qDebug() << "saved " << fileName;
+}
+
 void GameScene::keyPressEvent(QKeyEvent *event)
 {
     if(event->key())
@@ -137,6 +149,10 @@ void GameScene::keyPressEvent(QKeyEvent *event)
 
            addItem(&m_spaceship);
            m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
+        }
+        if(event->key() == Qt::Key_Z)
+        {
+           // saveScene();
         }
     }
 
