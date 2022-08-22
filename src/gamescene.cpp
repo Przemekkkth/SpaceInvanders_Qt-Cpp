@@ -15,7 +15,7 @@ GameScene::GameScene(QObject *parent)
     m_bgItem->setZValue(-1);
     addItem(m_bgItem);
 
-    m_level.loadLevel(":/res/level/level5.lvl");
+    m_level.loadLevel(":/res/level/level6.lvl");
 
     m_ufo = new Ufo();
     m_ufo->setPosition(0,9);

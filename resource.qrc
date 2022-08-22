@@ -17,5 +17,6 @@
         <file>res/sfx/shoot.wav</file>
         <file>res/level/level4.lvl</file>
         <file>res/level/level5.lvl</file>
+        <file>res/level/level6.lvl</file>
     </qresource>
 </RCC>
