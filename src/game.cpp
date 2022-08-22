@@ -22,7 +22,7 @@ const QString Game::PATH_TO_FONT = ":/res/font/Minecraft.ttf";
 
 const QUrl Game::ExplosionSFX = QUrl("qrc:/res/sfx/explosion.wav");
 const QUrl Game::InvaderKilledSFX = QUrl("qrc:/res/sfx/invaderkilled.wav");
-const QUrl Game::ShootSFX = QUrl(":/res/sfx/shoot.wav");
+const QUrl Game::ShootSFX = QUrl("qrc:/res/sfx/shoot.wav");
 
 bool Game::SPACESHIP_DEAD = false;
 
