@@ -11,7 +11,7 @@ int Enemy::s_shootCounter;
 Enemy::Enemy(int type, Game::Direction direction)
     : QGraphicsPixmapItem(QPixmap(Game::PATH_TO_ENEMIES_PIXMAP)), m_currentFrame(0)
 {
-    m_health = type+1; //1-5
+    m_health = type; //1-4
     if(direction == Game::Direction::RIGHT)
     {
         m_direction = Game::Direction::RIGHT;
