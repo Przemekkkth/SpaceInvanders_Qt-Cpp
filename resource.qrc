@@ -18,5 +18,6 @@
         <file>res/level/level4.lvl</file>
         <file>res/level/level5.lvl</file>
         <file>res/level/level6.lvl</file>
+        <file>res/level/level1_1.lvl</file>
     </qresource>
 </RCC>

@@ -1,6 +1,7 @@
 #include "game.h"
 
 const QStringList Game::PATH_TO_LEVELS = QStringList() << ":/res/level/level1.lvl"
+                                                       << ":/res/level/level1_1.lvl"
                                                        << ":/res/level/level2.lvl"
                                                        << ":/res/level/level3.lvl"
                                                        << ":/res/level/level4.lvl"
