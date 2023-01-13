@@ -3,12 +3,14 @@
 #include <QKeyEvent>
 #include <QDir>
 #include <QPainter>
+#include <QGraphicsRectItem>
 
 GameScene::GameScene(QObject *parent)
     : QGraphicsScene{parent}, m_spaceship(),
       m_leftArrowPressed(false), m_rightArrowPressed(false), m_spacebarPressed(false), m_loopTime(0.0f),
       m_deltaTime(0.0f), m_loopSpeed(int(1000.0f/Game::FPS)), m_level(this)
 {
+    setBackgroundBrush(Qt::black);
     m_enemyDeadSFX.setSource(Game::InvaderKilledSFX);
     srand(time(0));
     setSceneRect(0,0, Game::RESOLUTION.width(), Game::RESOLUTION.height());
@@ -39,7 +41,7 @@ void GameScene::loop()
     m_elapsedTimer.restart();
 
     m_loopTime += m_deltaTime;
-    if( m_loopTime > m_loopSpeed && !Game::SPACESHIP_DEAD)
+    while( m_loopTime > m_loopSpeed && !Game::SPACESHIP_DEAD)
     {
         m_loopTime -= m_loopSpeed;
         if(m_leftArrowPressed)
@@ -68,9 +70,18 @@ void GameScene::loop()
         }
 
         checkNextLevelActivated();
-        //qDebug() << "Enemy count " << Enemy::s_enemyManager.size();
+        //draw boundaries
+        QGraphicsRectItem* tItem = new QGraphicsRectItem();
+        tItem->setRect(0,0,Game::RESOLUTION.width(), Game::RESOLUTION.height());
+        tItem->setPen(backgroundBrush().color());
+        tItem->setBrush(backgroundBrush().color());
+        tItem->setPos(0, -Game::RESOLUTION.height());
+        tItem->setZValue(1000);
+        addItem(tItem);
+
+
     }
-    else if(Game::SPACESHIP_DEAD)
+    if(Game::SPACESHIP_DEAD)
     {
         m_level.drawGameOverText();
     }

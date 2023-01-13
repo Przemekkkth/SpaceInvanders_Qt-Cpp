@@ -26,8 +26,8 @@ const QUrl Game::ShootSFX = QUrl("qrc:/res/sfx/shoot.wav");
 
 bool Game::SPACESHIP_DEAD = false;
 
-int  Game::MIN_ENEMY_SHOOT_COUNTER  = 0.75 * (1000.0f/FPS);
-int  Game::MAX_ENEMY_SHOOT_COUNTER  = 1.75 * (1000.0f/FPS);;
+int  Game::MIN_ENEMY_SHOOT_COUNTER  = 2.75 * (1000.0f/FPS);
+int  Game::MAX_ENEMY_SHOOT_COUNTER  = 4.75 * (1000.0f/FPS);;
 
 Game::Game()
 {
