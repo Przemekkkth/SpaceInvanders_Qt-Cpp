@@ -18,3 +18,4 @@ qmake && make
 * [Qt](https://www.qt.io/) - Cross-Platform software for embedded & desktop
 * [Font](https://www.dafont.com/) - font
 * [Yt](https://youtu.be/Ax7pYgQ_94g) - gameplay
+* [Play online](https://przemekkkth.github.io/spaceinvaders/index.html) - game hosted on Github
