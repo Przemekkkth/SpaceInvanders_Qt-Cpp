@@ -25,6 +25,15 @@ GameScene::GameScene(QObject *parent)
     addItem(&m_spaceship);
     m_spaceship.setPos(Game::RESOLUTION.width()/2-m_spaceship.pixmap().width()/2,400);
 
+    //draw boundaries
+    QGraphicsRectItem* tItem = new QGraphicsRectItem();
+    tItem->setRect(0,0,Game::RESOLUTION.width(), Game::RESOLUTION.height());
+    tItem->setPen(backgroundBrush().color());
+    tItem->setBrush(backgroundBrush().color());
+    tItem->setPos(0, -Game::RESOLUTION.height());
+    tItem->setZValue(1000);
+    addItem(tItem);
+
     connect(&m_timer, &QTimer::timeout, this, &GameScene::loop);
     m_timer.start(int(1000.0f/Game::FPS));
     m_elapsedTimer.start();
@@ -70,15 +79,6 @@ void GameScene::loop()
         }
 
         checkNextLevelActivated();
-        //draw boundaries
-        QGraphicsRectItem* tItem = new QGraphicsRectItem();
-        tItem->setRect(0,0,Game::RESOLUTION.width(), Game::RESOLUTION.height());
-        tItem->setPen(backgroundBrush().color());
-        tItem->setBrush(backgroundBrush().color());
-        tItem->setPos(0, -Game::RESOLUTION.height());
-        tItem->setZValue(1000);
-        addItem(tItem);
-
 
     }
     if(Game::SPACESHIP_DEAD)
